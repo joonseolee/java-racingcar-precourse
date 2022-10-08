@@ -36,4 +36,16 @@ public class CarGroup {
     public List<Car> getCars() {
         return cars;
     }
+
+    public void raceByTimes(int loopCount) {
+        for (int time = 0 ; time < loopCount ; time++) {
+            raceOneCycle();
+        }
+    }
+
+    private void raceOneCycle() {
+        for (Car car : this.cars) {
+            car.move();
+        }
+    }
 }

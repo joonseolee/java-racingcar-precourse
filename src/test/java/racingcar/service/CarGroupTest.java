@@ -1,5 +1,6 @@
 package racingcar.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,11 +8,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarGroupTest {
 
+    private CarGroup carGroup;
+
+    @BeforeEach
+    void setUp() {
+        carGroup = CarGroup.fromNames("a,b,c");
+    }
+
     @Test
     void 차이름들을_입력받아_객체생성() {
-        String names = "a,b,c";
-        CarGroup carGroup = CarGroup.fromNames(names);
-
         assertThat(carGroup).isNotNull();
         assertThat(carGroup.getCarCount()).isEqualTo(3);
     }
@@ -22,5 +27,11 @@ class CarGroupTest {
         assertThatThrownBy(() -> CarGroup.fromNames(names))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    void 차량들_n번이동() {
+        carGroup.raceByTimes(0);
+        carGroup.raceByTimes(10);
     }
 }
