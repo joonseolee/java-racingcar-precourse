@@ -37,8 +37,9 @@ class CarTest {
 
     @Test
     void 이동할경우_랜덤값에따라_이동하거나정차() {
-        String movedDistance = car.move();
+        car.move();
+        String status = car.getDistance();
 
-        assertThat(movedDistance).containsAnyOf("-", "");
+        assertThat(status).containsAnyOf("-", "");
     }
 }

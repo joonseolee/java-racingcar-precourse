@@ -17,12 +17,14 @@ public class Car {
         this.distance = INITIAL_DISTANCE;
     }
 
-    public String move() {
+    public void move() {
         int randomValue = Randoms.pickNumberInRange(0, 9);
         if (randomValue >= 4) {
             this.distance += "-";
         }
+    }
 
-        return this.distance;
+    public String getDistance() {
+        return distance;
     }
 }
