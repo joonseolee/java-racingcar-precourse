@@ -34,4 +34,12 @@ class CarGroupTest {
         carGroup.raceByTimes(0);
         carGroup.raceByTimes(10);
     }
+
+    @Test
+    void n번이동후_우승자들이름_리턴() {
+        carGroup.raceByTimes(4);
+        String winnerNames = carGroup.getWinners();
+
+        assertThat(winnerNames).containsAnyOf("a", "b", "c");
+    }
 }
