@@ -3,9 +3,9 @@ package racingcar.service;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car {
-    public static final int MOVEMENT_START = 0;
-    public static final int MOVEMENT_END = 9;
-    public static final int MOVABLE_LIMIT = 4;
+    private static final int MOVEMENT_START = 0;
+    private static final int MOVEMENT_END = 9;
+    private static final int MOVABLE_LIMIT = 4;
 
     private final CarName name;
     private final CarDistance distance;

@@ -6,6 +6,7 @@ import java.util.*;
 
 public class CarGroup {
     private static final int INITIAL_WINNER = 0;
+    private static final String SEPARATION_MARK = ",";
 
     private final List<Car> cars;
 
@@ -14,7 +15,8 @@ public class CarGroup {
     }
 
     public static CarGroup fromNames(String rawNames) {
-        String[] names = rawNames.split(",");
+        checkRawNames(rawNames);
+        String[] names = rawNames.split(SEPARATION_MARK);
         checkUniqueName(names);
 
         List<Car> cars = new ArrayList<>();
@@ -23,6 +25,21 @@ public class CarGroup {
         }
 
         return new CarGroup(cars);
+    }
+
+    private static void checkRawNames(String rawNames) {
+        int firstIndex = 0;
+        int lastIndex = rawNames.length() - 1;
+
+        checkRawNamesCondition(rawNames.contains(SEPARATION_MARK + SEPARATION_MARK));
+        checkRawNamesCondition(rawNames.charAt(firstIndex) == SEPARATION_MARK.charAt(firstIndex));
+        checkRawNamesCondition(rawNames.charAt(lastIndex) == SEPARATION_MARK.charAt(firstIndex));
+    }
+
+    private static void checkRawNamesCondition(boolean isNotValid) {
+        if (isNotValid) {
+            throw new IllegalArgumentException("[ERROR] 콤마사이에 값을 넣어주세요.");
+        }
     }
 
     private static void checkUniqueName(String[] names) {
@@ -38,7 +55,7 @@ public class CarGroup {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return this.cars;
     }
 
     public void raceByTimes(int loopCount) {
@@ -78,7 +95,7 @@ public class CarGroup {
     }
 
     private String toWinnersFromWinnerCars(List<Car> winners) {
-        StringJoiner winnerNames = new StringJoiner(",");
+        StringJoiner winnerNames = new StringJoiner(SEPARATION_MARK);
         for (Car winner : winners) {
             winnerNames.add(winner.getName());
         }
