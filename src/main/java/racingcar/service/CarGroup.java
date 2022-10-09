@@ -1,5 +1,7 @@
 package racingcar.service;
 
+import racingcar.view.RacingCarViewer;
+
 import java.util.*;
 
 public class CarGroup {
@@ -42,13 +44,14 @@ public class CarGroup {
     public void raceByTimes(int loopCount) {
         for (int time = 0 ; time < loopCount ; time++) {
             raceOneCycle();
-            System.out.println("");
+            RacingCarViewer.printLineBreak();
         }
     }
 
     private void raceOneCycle() {
         for (Car car : this.cars) {
             car.move();
+            RacingCarViewer.printCarStatus(car.getName(), car.getDistance());
         }
     }
 

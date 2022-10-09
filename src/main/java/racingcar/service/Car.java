@@ -3,28 +3,34 @@ package racingcar.service;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car {
-    private static final String INITIAL_DISTANCE = "";
+    public static final int MOVEMENT_START = 0;
+    public static final int MOVEMENT_END = 9;
+    public static final int MOVABLE_LIMIT = 4;
 
-    private final String name;
-    private String distance;
+    private final CarName name;
+    private final CarDistance distance;
 
     public Car(String name) {
-        if (name == null || name.length() > 5 || name.length() == 0) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름을 다시 확인해주세요.");
-        }
-
-        this.name = name;
-        this.distance = INITIAL_DISTANCE;
+        this.name = new CarName(name);
+        this.distance = new CarDistance();
     }
 
     public void move() {
-        int randomValue = Randoms.pickNumberInRange(0, 9);
-        if (randomValue >= 4) {
-            this.distance += "-";
+        int randomValue = Randoms.pickNumberInRange(MOVEMENT_START, MOVEMENT_END);
+        if (randomValue >= MOVABLE_LIMIT) {
+            this.distance.addDistance();
         }
     }
 
     public String getDistance() {
-        return distance;
+        return this.distance.getDistance();
+    }
+
+    public int getDistanceSize() {
+        return this.distance.getDistanceSize();
+    }
+
+    public String getName() {
+        return this.name.getName();
     }
 }
